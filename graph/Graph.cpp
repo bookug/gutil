@@ -11,7 +11,7 @@
 using namespace std;
 
 
-uint32_t hash(const void * key, int len, uint32_t seed) 
+uint32_t myhash(const void * key, int len, uint32_t seed) 
 {
     return Util::MurmurHash2(key, len, seed);
 }
@@ -100,7 +100,7 @@ Graph::buildSignature(bool column_oriented)
     for(int i = 0; i < this->vertex_num; ++i)
     {
         Vertex& v = this->vertices[i];
-        int pos = hash(&(v.label), 4, HASHSEED) % VLEN;
+        int pos = myhash(&(v.label), 4, HASHSEED) % VLEN;
         signature_table[signum*i] = 1 << pos;
         for(int j = 0; j < v.in.size(); ++j)
         {
@@ -108,7 +108,7 @@ Graph::buildSignature(bool column_oriented)
             int sig[2];
             sig[0] = this->vertices[nb.vid].label;
             sig[1] = nb.elb;
-            pos = hash(sig, 8, HASHSEED) % gnum;
+            pos = myhash(sig, 8, HASHSEED) % gnum;
             int a = pos / 16, b = pos % 16;
             unsigned t = signature_table[signum*i+1+a];
             unsigned c = 3 << (2*b);
@@ -136,7 +136,7 @@ Graph::buildSignature(bool column_oriented)
             int sig[2];
             sig[0] = this->vertices[nb.vid].label;
             sig[1] = -nb.elb;
-            int pos = hash(sig, 8, HASHSEED) % gnum;
+            int pos = myhash(sig, 8, HASHSEED) % gnum;
             int a = pos / 16, b = pos % 16;
             unsigned t = signature_table[signum*i+1+a];
             unsigned c = 3 << (2*b);

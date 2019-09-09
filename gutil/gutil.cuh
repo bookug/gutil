@@ -402,6 +402,24 @@ struct GpuTimer
 };
 
 
+//use watch -n 1 nvidia-smi instead of nvidia-smi -l 1
+//nvidia-smi --format=csv --query-gpu=power.draw,utilization.gpu,fan.speed,temperature.gpu
+//nvidia-smi --help-query-gpu
+//https://github.com/wookayin/gpustat
+//nvidia-smi  --format=csv --query-gpu=memory.used -i 0
+//https://developer.nvidia.com/nvidia-system-management-interface
+//BETTER: how to find memory usage of the corresponding program?
+int
+gpuMemUsage(int dev)
+{
+    string cmd = "nvidia-smi --format=csv --query-gpu=memory.used -i ";
+    cmd = cmd + Util::int2string(dev) + " | tail -1 | awk '{print $1}'"; 
+    cout<<"check: "<<cmd<<endl;
+    string s = Util::getSystemOutput(cmd);
+    int ret = Util::string2int(s);
+    return ret;    //MB
+}
+
 
 #endif //_GUTIL_GUTIL_H
 

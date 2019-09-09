@@ -34,10 +34,10 @@
 #opt-in to caching of global memory accesses in L1 via the -Xptxas -dlcm=ca option to nvcc
 #intermediate files, using --keep for nvcc
 #for PTX codes, using --ptx for nvcc
-NVCC = nvcc -arch=sm_35 -lcudadevrt -rdc=true -G --ptxas-options=-v -lineinfo -Xcompiler -rdynamic -I ~/cudaToolkit/cub-1.8.0/
+NVCC = nvcc -std=c++11 -arch=sm_35 -lcudadevrt -rdc=true -G --ptxas-options=-v -lineinfo -Xcompiler -rdynamic -I ~/cudaToolkit/cub-1.8.0/
 # NOTICE: C/C++ programs can also be compiled by NVCC.
 #CC = $(NVCC)
-CC = g++
+CC = g++ -std=c++11
 #NVCC = nvcc -arch=sm_35 -lcudadevrt -rdc=true -G -Xcompiler -rdynamic -lineinfo
 #CFLAGS = -g -c #-fprofile-arcs -ftest-coverage -coverage #-pg
 #EXEFLAG = -g #-fprofile-arcs -ftest-coverage -coverage #-pg #-O2

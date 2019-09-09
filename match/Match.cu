@@ -710,6 +710,8 @@ Match::match(IO& io, unsigned*& final_result, unsigned& result_row_num, unsigned
     delete[] qnum;
     delete[] cand;
 	release();
+    int mem = gpuMemUsage(3);
+    cout<<"GPU 3 memory usage: "<<mem<<" MB"<<endl;
 }
 
 void
