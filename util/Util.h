@@ -30,6 +30,7 @@
 #include <libgen.h>
 #include <signal.h>
 
+#include <signal.h> 
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/file.h>
@@ -144,6 +145,7 @@ public:
 	static bool create_dir(const std:: string _dir);
 	static bool create_file(const std::string _file);
 
+    static void timeLimit(int seconds);
 	static std::string getTimeName();
 	static std::string getTimeString();
 	static long get_cur_time();

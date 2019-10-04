@@ -1415,12 +1415,41 @@ Util::empty_file(const char* _fname)
 
 //require that _base>=1
 unsigned 
-ceiling(unsigned _val, unsigned _base)
+Util::ceiling(unsigned _val, unsigned _base)
 {
 	//WARN: we donot check overflow here
 	return (_val+_base-1) / _base * _base;
 }
 
+
+void myTimeout(int signo)
+{
+    switch(signo)
+    {
+        case SIGALRM:
+            printf("This query runs time out!\n");
+            exit(1);
+        default:
+            break;
+    }
+}
+
+void 
+Util::timeLimit(int seconds)
+{
+    struct itimerval tick;
+    //signal(SIGALRM, exit);
+    signal(SIGALRM, myTimeout);
+    memset(&tick, 0, sizeof(tick));
+    //Timeout to run first time
+    tick.it_value.tv_sec = seconds;
+    tick.it_value.tv_usec = 0;
+    //After first, the Interval time for clock
+    tick.it_interval.tv_sec = seconds;
+    tick.it_interval.tv_usec = 0;
+    if(setitimer(ITIMER_REAL, &tick, NULL) < 0)
+        printf("Set timer failed!\n");
+}
 
 
 

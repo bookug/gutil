@@ -409,6 +409,8 @@ struct GpuTimer
 //nvidia-smi  --format=csv --query-gpu=memory.used -i 0
 //https://developer.nvidia.com/nvidia-system-management-interface
 //BETTER: how to find memory usage of the corresponding program?
+//cudaMemGetInfo()
+//https://devtalk.nvidia.com/default/topic/1063443/cuda-programming-and-performance/different-cuda-memory-usage-between-nvidia-smi-and-cudamemgetinfo/
 int
 gpuMemUsage(int dev)
 {
@@ -419,6 +421,21 @@ gpuMemUsage(int dev)
     int ret = Util::string2int(s);
     return ret;    //MB
 }
+
+
+//cuda map
+//https://devtalk.nvidia.com/default/topic/523766/cuda-programming-and-performance/std-map-in-device-code/
+
+//struct/class on gpu
+//https://devtalk.nvidia.com/default/topic/1063212/cuda-programming-and-performance/performance-of-passing-structs-to-kernel-by-value-by-reference/
+
+//cpu/gpu full performance
+//https://elinux.org/Jetson/Performance
+
+//gpu L2 cache
+//https://devtalk.nvidia.com/default/topic/1063246/cuda-programming-and-performance/gpu-cache-coherence-problem/
+
+
 
 
 #endif //_GUTIL_GUTIL_H

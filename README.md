@@ -16,6 +16,7 @@ CUDA utilities are placed in `gutil/`, and C/C++ utilities are placed in `util/`
 # Functions
 
 - Time Counting
+- Time out for a query
 - Memory Usage
 - sparse matrix
 - CPU algorithms (intersect, sort...)
